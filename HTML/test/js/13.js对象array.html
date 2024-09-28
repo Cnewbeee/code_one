@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 方法1：
+        var a = new Array(1, 2, 3, 4)
+        // 方法2；
+        var b = [1, 2, 3, 4];
+
+        // 特点：长度可变，类型可变，不同类型可同时出现；
+        //forEach遍历数组有值的元素
+        a.forEach(function (e){
+            console.log(e);
+        });
+        a.forEach((e) => {
+            console.log(e);
+        });
+        //push添加到末尾
+        a.push(5, 6, 7);
+
+        //splice删除元素(开始下标，删除个数)
+        a.splice(1, 2);
+
+    </script>
+</body>
+</html>

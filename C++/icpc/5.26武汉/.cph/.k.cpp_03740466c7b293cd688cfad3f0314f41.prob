@@ -1,0 +1,1 @@
+{"name":"Local: k","url":"e:\\VS Code\\icpc\\5.26武汉\\k.cpp","tests":[{"id":1716711664191,"input":"3\n1\n2\n3\n","output":"Fluttershy\nPinkie Pie\nPinkie Pie\n"},{"id":1716711740636,"input":"5\n1 3 7 15 30\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\icpc\\5.26武汉\\k.cpp","group":"local","local":true}

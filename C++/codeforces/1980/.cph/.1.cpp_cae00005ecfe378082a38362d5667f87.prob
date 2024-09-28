@@ -1,0 +1,1 @@
+{"name":"Local: 1","url":"e:\\VS Code\\codeforces\\1980\\1.cpp","tests":[{"id":1717426127336,"input":"3\n10 1\nBGECDCBDED\n10 2\nBGECDCBDED\n9 1\nBBCDEFFGG\n","output":"2\n5\n1\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\codeforces\\1980\\1.cpp","group":"local","local":true}

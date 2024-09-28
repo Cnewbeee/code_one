@@ -1,0 +1,1 @@
+{"name":"Local: I","url":"e:\\VS Code\\C++\\icpc\\6.22\\I.cpp","tests":[{"id":1719062375611,"input":"4\nhelloccpc\nabcdcba\nx\nabc\n","output":"3\n0\n0\n-1\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\C++\\icpc\\6.22\\I.cpp","group":"local","local":true}

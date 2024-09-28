@@ -1,0 +1,1 @@
+{"name":"Local: 1","url":"e:\\VS Code\\codeforces\\1977\\1.cpp","tests":[{"id":1717080211246,"input":"5\n4\n12ac\n5\n123wa\n9\nallllmost\n5\nac123\n6\n011679","output":"YES\nNO\nYES\nNO\nYES"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\codeforces\\1977\\1.cpp","group":"local","local":true}

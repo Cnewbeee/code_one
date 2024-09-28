@@ -1,0 +1,1 @@
+{"name":"Local: 2","url":"e:\\VS Code\\atcode\\6.1\\2.cpp","tests":[{"id":1717244694306,"input":"2 4\n10 20 30 40\n20 0 10 30\n0 100 100 0\n","output":"No"},{"id":1717244715860,"input":"2 3\n10 20 30\n20 0 10\n0 100 100\n","output":"Yes"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\atcode\\6.1\\2.cpp","group":"local","local":true}

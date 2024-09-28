@@ -1,0 +1,1 @@
+{"name":"Local: 2","url":"e:\\VS Code\\codeforces\\1976\\2.cpp","tests":[{"id":1716734969310,"input":"7\n1\n14\n24\n15\n27\n11\n19","output":"1\n1\n5\n0 -1 0 0 1\n6\n0 0 0 -1 0 1\n5\n-1 0 0 0 1\n6\n-1 0 -1 0 0 1\n5\n-1 0 -1 0 1\n5\n-1 0 1 0 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\codeforces\\1976\\2.cpp","group":"local","local":true}

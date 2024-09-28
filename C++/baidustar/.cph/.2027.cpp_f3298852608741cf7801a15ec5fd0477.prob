@@ -1,0 +1,1 @@
+{"name":"Local: 2027","url":"e:\\VS Code\\baidustar\\2027.cpp","tests":[{"id":1717069486523,"input":"2 3\n1 2 3\n3 2 1","output":"7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\baidustar\\2027.cpp","group":"local","local":true}

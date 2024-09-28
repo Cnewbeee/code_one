@@ -1,0 +1,1 @@
+{"name":"Local: 1","url":"e:\\VS Code\\icpc\\24江苏\\1.cpp","tests":[{"id":1715687996679,"input":"3\n5 0 10 10 4\n3 2 7 2 1\n3 2 7 3 7","output":"2.000000000 0.800000000\n2.666666667 0.666666667\n3.666666667 3.666666667"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\icpc\\24江苏\\1.cpp","group":"local","local":true}
