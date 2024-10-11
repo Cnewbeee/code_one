@@ -30,6 +30,20 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "typeindex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "string.h": "c",
+        "stdio.h": "c",
+        "text_encoding": "c",
+        "thread": "c",
+        "stdlib.h": "c",
+        "random": "c",
+        "map": "c",
+        "format": "c",
+        "list": "c",
+        "numbers": "c",
+        "print": "c",
+        "ctype.h": "c",
+        "set": "c",
+        "regex": "c"
     }
 }

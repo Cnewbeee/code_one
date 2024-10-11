@@ -5,10 +5,9 @@ const int N = 100010;
 
 int cnt[N], son[N][26], idx;
 int n;
-char str[N];
 void insert(char *s){
     int p = 0;
-    for(int i = 0; s[i]; i++){
+    for(int i = 0; i < strlen(s); i++){
         int u = s[i] - 'a';
         if(!son[p][u])son[p][u] = ++idx;
         p = son[p][u];
@@ -17,7 +16,7 @@ void insert(char *s){
 }
 int query(char *s){
     int p = 0;
-    for(int i = 0; s[i]; i ++){
+    for(int i = 0; i < strlen(s); i ++){
         int u = s[i] - 'a';
         if(!son[p][u])return 0;
         p = son[p][u];
@@ -43,19 +42,14 @@ int main(){
             w[pp++] = tt;
         }else{
             if(pp > 0 && w[0] != '\0' ){
-                
+                insert(w);
                 pp = 0;
             }
             //memset(c, '\0', sizeof(c));
         }
     }
     if(pp > 0 && w[0] != '\0' ){
-        int ti = find(w);
-        if (ti == -1) {
-            
-        }else{
-            
-        }
+        insert(w);
         pp = 0;
     }
 
