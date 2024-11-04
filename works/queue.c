@@ -78,13 +78,13 @@ void _print(queue *q){
     if(!_isEmpty(q)){
         _getTop(q, &e);
         printf("\n队长:%d\n队首元素: %d\n", _length(q), e);
+        printf("\n数值域为：\n");
+        for(int i = q->front; i < q->rear-1; i++){
+            printf("%d ", q->data[i%MAXSIZE]);
+        }
     }else
         printf("\n队为空!\n");
 
-    printf("\n数值域为：\n");
-    for(int i = 0; i < MAXSIZE-1; i++){
-        printf("%d ", q->data[i]);
-    }
     printf("\n————————————————————————————\n\n");
 }
 

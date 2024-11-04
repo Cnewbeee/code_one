@@ -44,6 +44,9 @@
         "print": "c",
         "ctype.h": "c",
         "set": "c",
-        "regex": "c"
+        "regex": "c",
+        "string": "c",
+        "string_view": "c",
+        "span": "c"
     }
 }

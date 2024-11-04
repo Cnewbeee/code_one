@@ -102,6 +102,7 @@ Bool _getTail(Deque *d, typeElem *e){
     return True;
 }
 
+
 void _print(Deque *d){
     Dequenode *temp = d->head;
     printf("\n！！！！！！！！！！！！嬉咫！！！！！！！！！！！！\n");

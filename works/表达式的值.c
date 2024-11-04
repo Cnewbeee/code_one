@@ -112,7 +112,7 @@ void _eval(){
     if(o == '/') c = a / b;
 
     _push(&num, c);
-    //printf("\ntest: %d %c %d = %d\n", a, o, b, c);
+    printf("\ntest: %d %c %d = %d\n", a, o, b, c);
     //_print(&num);
 }
 
@@ -151,8 +151,8 @@ int main(){
 
     //_print(&num);
 
-    //printf("\n%s = %d\n\n", ch, _getTop(&num, &e));
-    printf("%d\n", _getTop(&num, &e));
+    printf("\n%s = %d\n\n", ch, _getTop(&num, &e));
+    //printf("%d\n", _getTop(&num, &e));
 
     _destroy(&num);
     _destroy(&op);
