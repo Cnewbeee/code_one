@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define MAXSIZE 10000
-#define typeElem char
+#define typeElem int
 #define Bool int
 #define True 1
 #define False 0

@@ -1,0 +1,1 @@
+{"name":"Local: huffman","url":"e:\\VS Code\\works\\exercise\\huffman.c","tests":[{"id":1731247344648,"input":"6\n1:111\n2:0\n+:110\n*:1010\n=:1011\n8:100\n111011001010011001011111100\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\works\\exercise\\huffman.c","group":"local","local":true}

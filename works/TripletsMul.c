@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define MAXSIZE 10000
-#define typeElem char
+#define typeElem int
 #define Bool int
 #define True 1
 #define False 0
@@ -67,6 +67,7 @@ Bool Mul(triplet matrix_1[], triplet matrix_2[], triplet matrix[]){
                     if(matrix_2[k].row == matrix_1[j].col){
                         sum = matrix_1[j].data * matrix_2[k].data;
                         int x = i, y = matrix_2[k].col;
+                        //printf("%d * %d = %d\n",matrix_1[j].data,matrix_2[k].data,sum);
                         if(sum!= 0){
                             int r = 0;
                             for(int l = 1; l <= matrix[0].data; l++){
