@@ -31,7 +31,7 @@ TreeNode *new_node(int key)
     return node;
 }
 
-TreeNode *right_rotate(TreeNode *y)
+TreeNode *right_(TreeNode *y)
 {
     TreeNode *x = y->left;
     TreeNode *T2 = x->right;
@@ -45,7 +45,7 @@ TreeNode *right_rotate(TreeNode *y)
     return x;
 }
 
-TreeNode *left_rotate(TreeNode *x)
+TreeNode *left_(TreeNode *x)
 {
     TreeNode *y = x->right;
     TreeNode *T2 = y->left;
@@ -83,21 +83,21 @@ TreeNode *insert(TreeNode *node, int key)
     int balance = get_balance(node);
 
     if (balance > 1 && key < node->left->key)
-        return right_rotate(node);
+        return right_(node);
 
     if (balance < -1 && key > node->right->key)
-        return left_rotate(node);
+        return left_(node);
 
     if (balance > 1 && key > node->left->key)
     {
-        node->left = left_rotate(node->left);
-        return right_rotate(node);
+        node->left = left_(node->left);
+        return right_(node);
     }
 
     if (balance < -1 && key < node->right->key)
     {
-        node->right = right_rotate(node->right);
-        return left_rotate(node);
+        node->right = right_(node->right);
+        return left_(node);
     }
 
     return node;
@@ -152,21 +152,21 @@ TreeNode *delete_node(TreeNode *root, int key)
     int balance = get_balance(root);
 
     if (balance > 1 && get_balance(root->left) >= 0)
-        return right_rotate(root);
+        return right_(root);
 
     if (balance > 1 && get_balance(root->left) < 0)
     {
-        root->left = left_rotate(root->left);
-        return right_rotate(root);
+        root->left = left_(root->left);
+        return right_(root);
     }
 
     if (balance < -1 && get_balance(root->right) <= 0)
-        return left_rotate(root);
+        return left_(root);
 
     if (balance < -1 && get_balance(root->right) > 0)
     {
-        root->right = right_rotate(root->right);
-        return left_rotate(root);
+        root->right = right_(root->right);
+        return left_(root);
     }
 
     return root;
@@ -195,7 +195,7 @@ void inorder(TreeNode *root)
 
 void menu()
 {
-    printf("————————————AVL树操作————————————\n");
+    printf("————————————BST树操作————————————\n");
     printf("\t1. 插入节点\n");
     printf("\t2. 删除节点\n");
     printf("\t3. 查找节点\n");
@@ -237,7 +237,7 @@ int main()
             break;
         }
         case 4:
-            printf("AVL树的中序遍历结果是 \n");
+            printf("BST树的中序遍历结果是 \n");
             inorder(root);
             printf("\n");
             break;

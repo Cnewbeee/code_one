@@ -7,7 +7,7 @@ int head[maxn];
 int in[maxn], topo[maxn];
 int ve[maxn];
 int vl[maxn];
-int stack[maxn], top = -1; // 使用数组模拟栈
+int stack[maxn], top = -1; 
 struct node {
     int to, next, w;
 } e[maxe];
@@ -23,14 +23,14 @@ int TopoSort() {
     int cnt = 0;
     for (int i = 0; i < n; i++)
         if (in[i] == 0)
-            stack[++top] = i; // 入栈
+            stack[++top] = i; 
     while (top != -1) {
-        int u = stack[top--]; // 出栈
+        int u = stack[top--]; 
         topo[cnt++] = u;
         for (int i = head[u]; ~i; i = e[i].next) {
             int v = e[i].to;
             if (--in[v] == 0)
-                stack[++top] = v; // 入栈
+                stack[++top] = v; 
         }
     }
     if (cnt < n) return 0;

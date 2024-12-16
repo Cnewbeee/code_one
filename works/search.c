@@ -31,7 +31,7 @@ int blockSearch(int mainTable[], IndexItem indexTable[], int key, int blockCount
 int main() {
     int mainTable[MAX] = {8, 14, 6, 9, 10, 22, 34, 18, 19, 31, 40, 38, 54, 66, 46, 71, 78, 68};
     IndexItem indexTable[BLOCK_SIZE] = {
-        {22, 0, 6},
+        {17, 0, 6},
         {40, 6, 6},
         {78, 12, 6}
     };
