@@ -195,14 +195,15 @@ void inorder(TreeNode *root)
 
 void menu()
 {
-    printf("AVL树操作:\n");
-    printf("1. 插入节点\n");
-    printf("2. 删除节点\n");
-    printf("3. 查找节点\n");
-    printf("4. 中序遍历\n");
-    printf("5. 退出\n");
-    printf("请输入您的选择: ");
+    printf("————————————AVL树操作————————————\n");
+    printf("\t1. 插入节点\n");
+    printf("\t2. 删除节点\n");
+    printf("\t3. 查找节点\n");
+    printf("\t4. 中序遍历\n");
+    printf("\t5. 退出\n");
+    printf("—————————请输入您的选择—————————\n");
 }
+
 
 int main()
 {
