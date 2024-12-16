@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>    
+</head>
+<body>
+    <img id="h1" src="../img/huawei.jpg"> <br><br>
+
+    <div class="cls">小米</div> <br>
+    <div class="cls">华为</div> <br>
+
+    <input type="checkbox" name="hobby">电影
+    <input type="checkbox" name="hobby">旅游
+    <input type="checkbox" name="hobby">游戏
+</body>
+
+<script>
+    //1.获取Element元素
+    //1.1 获取元素-根据ID
+    // var img = document.getElementById('h1');
+    // alert(img);
+
+    //1.2 获取元素-根据标签名称
+    // var divs = document.getElementsByTagName('div');
+    // for (let i = 0; i < divs.length; i++) {
+    //     alert(divs[i]);
+    // }
+
+    //1.3 获取元素-根据name属性
+    // var ans = document.getElementsByName('hobby');
+    // for (let i = 0; i < ans.length; i++) {
+    //     alert(ans[i]);
+    // }
+
+    //1.4 获取元素-根据class属性
+    // var divs = document.getElementsByClassName('cls');
+    // for (let i = 0; i < divs.length; i++) {
+    //     alert(divs[i]);
+    // }
+
+    //2.方法(更多可查操作手册)
+    var divs = document.getElementsByClassName('cls');
+    var div1 = divs[0];
+
+    div1.innerHTML = '华为遥遥领先';
+
+</script>
+</html></html>
