@@ -1,0 +1,1 @@
+{"name":"Local: K","url":"e:\\VS Code\\C++\\Niuke\\hanjia\\1.23\\K.cpp","tests":[{"id":1737615952503,"input":"6 6\n000000\n000000\n001100\n001100\n000000\n000000","output":""},{"id":1737617149302,"input":"2 3\n110\n000","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\C++\\Niuke\\hanjia\\1.23\\K.cpp","group":"local","local":true}

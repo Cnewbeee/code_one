@@ -99,5 +99,8 @@
         "syncstream": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "java.project.sourcePaths": [
+        "JAVA/Contacts"
+    ]
 }

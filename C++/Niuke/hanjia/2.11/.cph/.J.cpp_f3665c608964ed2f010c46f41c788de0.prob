@@ -1,0 +1,1 @@
+{"name":"Local: J","url":"e:\\VS Code\\C++\\Niuke\\hanjia\\2.11\\J.cpp","tests":[{"id":1739268213484,"input":"3\n2 1 1\n5 1 3\n5 1 5","output":"3\n9\n12"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\C++\\Niuke\\hanjia\\2.11\\J.cpp","group":"local","local":true}
