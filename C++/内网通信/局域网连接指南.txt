@@ -1,0 +1,62 @@
+# 同一局域网内两台电脑通信指南
+
+## 准备工作
+1. 确保两台电脑：
+   - 连接到同一个路由器/交换机
+   - 网络连接正常（可互相ping通）
+   - 关闭防火墙或放行8080端口
+
+## 配置步骤
+
+### 服务端电脑（接收消息的电脑）
+1. 查看本机IP地址：
+   - 打开命令提示符，输入：`ipconfig`
+   - 记录"IPv4地址"（如192.168.1.100）
+
+2. 修改server.cpp：
+```cpp
+// 将以下行：
+serverAddr.sin_addr.s_addr = INADDR_ANY;
+// 修改为：
+inet_pton(AF_INET, "192.168.1.100", &serverAddr.sin_addr); // 使用实际IP
+```
+
+3. 编译并运行服务端：
+```bash
+g++ server.cpp -o server.exe -lws2_32
+server.exe
+```
+
+### 客户端电脑（发送消息的电脑）
+1. 修改client.cpp：
+```cpp
+// 将以下行：
+inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr);
+// 修改为：
+inet_pton(AF_INET, "192.168.1.100", &serverAddr.sin_addr); // 使用服务端IP
+```
+
+2. 编译并运行客户端：
+```bash
+g++ client.cpp -o client.exe -lws2_32
+client.exe
+```
+
+## 测试通信
+1. 客户端连接成功后，输入任意消息
+2. 服务端会显示接收到的消息
+3. 客户端会显示服务端的回复
+
+## 常见问题
+1. 连接失败：
+   - 检查IP地址是否正确
+   - 确认服务端程序已运行
+   - 检查防火墙设置
+
+2. 无法ping通：
+   - 确认两台电脑在同一网络
+   - 检查网线/WiFi连接
+   - 尝试重启路由器
+
+3. 端口冲突：
+   - 可修改server.cpp和client.cpp中的8080为其他端口（需保持一致）

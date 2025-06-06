@@ -98,7 +98,9 @@
         "stop_token": "cpp",
         "syncstream": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     },
     "java.project.sourcePaths": [
         "JAVA/Contacts"

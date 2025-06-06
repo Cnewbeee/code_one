@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 # 读取数据，指定编码格式为UTF-16 LE（根据实际情况调整）
 try:
-    data = pd.read_csv('data.csv', header=None, 
+    data = pd.read_csv(r'E:\VS Code\ADA\kmp\data.csv', header=None, sep='\t',
                       names=['n', 'kmp_pre', 'kmp_match', 'bf'],
                       encoding='utf-16-le')
 except UnicodeDecodeError:
-    data = pd.read_csv('data.csv', header=None, 
+    data = pd.read_csv(r'E:\VS Code\ADA\kmp\data.csv', header=None, sep='\t',
                       names=['n', 'kmp_pre', 'kmp_match', 'bf'],
                       encoding='iso-8859-1')
 
@@ -26,10 +26,10 @@ plt.plot(data['n'], data['kmp_total'],
 plt.plot(data['n'], data['bf'], 
         label='BF Operations', 
         color='red', 
-        linestyle='--')
+        linestyle='-')
 
 # 设置图表属性
-plt.yscale('log')  # 使用对数坐标轴
+plt.yscale('linear')  # 默认设置，适合均匀分布数据
 plt.title('Algorithm Complexity Comparison')
 plt.xlabel('Pattern Length (n)')
 plt.ylabel('Operations (log scale)')
@@ -40,3 +40,4 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('comparison.png', dpi=300)
 plt.show()
+

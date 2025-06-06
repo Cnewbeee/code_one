@@ -7,24 +7,46 @@ using namespace std;
 #define PII pair<int,int>
 
 const int mod = 1e9 + 7;
-const int N = 1e6 + 10;
+const int N = 1000 + 10;
+int dp[N], w[N], len;
+string s[N];
+map<string, int> a, b, c;
+set<string> st;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<int> v(n+1);
-    for(int i = 1; i <= n; i++){
-        cin >> v[i];
+    int n, m;
+    cin >> m >> n;
+    for(int i = 0; i < n; i++){
+        int x, y, z;
+        cin >> x >> y >> z;
+        cin >> s[i];
+        a[s[i]] += x;
+        b[s[i]] = y;
+        c[s[i]] = z;
+        st.insert(s[i]);
+    }
+    
+    for(string t : st){
+        while(a[t] > c[t]){
+            w[++len] = b[t] * c[t];
+            a[t] -= c[t];
+        }
+        if(a[t] > 0){
+            w[++len] = b[t] * a[t];
+            a[t] = 0;
+        }
     }
 
-    vector<int> dp(n+1);
-    dp[0] = 0;
-    dp[1] = 0;
-    for(int i = 2; i <= n; i++){
-        dp[i] = min(dp[i-1] + abs(v[i] - v[i-1]), dp[i-2] + abs(v[i] - v[i-2]));
+    m = 21 - m;
+
+    for(int i = 1; i <= len; i++){
+        for(int j = m; j > 0; j--){
+            dp[j] = max(dp[j], dp[j-1] + w[i]);
+        }
     }
-    cout << dp[n] << endl;
+    cout << dp[m] << endl;
+    
 }
 
 signed main(void)

@@ -1,0 +1,1 @@
+{"name":"Local: test","url":"e:\\VS Code\\C++\\luogu\\test.cpp","tests":[{"id":1749087364866,"input":"20 3\n63 1 64 yinshifen\n1 10 1 men\n1 1 64 yinshifen","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\C++\\luogu\\test.cpp","group":"local","local":true}

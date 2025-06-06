@@ -1,0 +1,30 @@
+# 客户端安装包打包指南
+
+## 准备工作
+1. 下载Inno Setup工具（官网：https://jrsoftware.org/isinfo.php）
+2. 下载VC++运行库（vcredist_x86.exe）：
+   - 官方下载：https://aka.ms/vs/17/release/vc_redist.x86.exe
+   - 保存到C++/内网通信目录
+
+## 打包步骤
+1. 将以下文件放入C++/内网通信目录：
+   - client.exe (编译好的客户端程序)
+   - vcredist_x86.exe (VC++运行库)
+   - client_setup.iss (安装脚本)
+
+2. 使用Inno Setup打开client_setup.iss
+
+3. 点击"编译"按钮生成安装包：
+   - 安装包将输出到output目录
+   - 文件名为ClientSetup.exe
+
+## 安装包功能
+1. 自动安装VC++运行库（静默安装）
+2. 创建桌面快捷方式
+3. 创建开始菜单项
+4. 安装完成后可立即启动客户端
+
+## 测试建议
+1. 在干净的系统上测试安装
+2. 验证快捷方式是否正常
+3. 测试程序启动和通信功能
