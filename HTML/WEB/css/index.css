@@ -1,0 +1,1268 @@
+:root {
+    font-size: clamp(12px, 0.9vw, 18px);
+    /* 根据视口宽度自动调整基础字体 */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+#container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    /* 使用视口高度单位 */
+    overflow: hidden;
+    position: relative;
+    z-index: 999;
+}
+
+#header {    
+    background-image: linear-gradient(#0E366E, rgba(255, 255, 255, 0));    
+    width: 100%;    
+    padding: 0 10px;    
+    color: #fff;    
+    border: 0;    
+    width: 100%;    
+    position: fixed;    
+    transition: background-image 0.3s ease; /* 添加过渡效果使变化更平滑 */
+}
+
+/* 新增类：当滚动超过第一屏时应用 */
+#header.solid-bg {
+    background-image: none; /* 移除渐变背景 */
+    background-color: #124997; /* 设置为纯色背景，使用原来渐变的起始颜色 */
+}
+
+/* 在响应式设计中也保持这个效果 */
+@media (max-width: 992px) {
+    #header.solid-bg {
+        background-image: none;
+        background-color: #124997;
+    }
+}
+
+@media (max-width: 768px) {
+    #header.solid-bg {
+        background-image: none;
+        background-color: #124997;
+    }
+}
+
+
+#top-empty {
+    height: 20px;
+}
+
+#top-left {
+    height: 30px;
+    width: 35%;
+}
+
+#first-left {
+    height: 30px;
+    width: 80%;
+    float: left;
+}
+
+.first {
+    padding: 0 10px;
+    height: 20px;
+    font-size: 0.9rem;
+}
+
+#top {
+    max-width: 30px;
+}
+
+.rightLine {
+    border-right: 1px solid #ccc;
+}
+
+#logo {
+    width: 26%;
+}
+
+#top-right {
+    display: flex;
+    margin-right: 10%;
+    float: right;
+}
+
+#search {
+    width: 150px;
+    background-color: rgba(123, 123, 123, 0.5);
+    border-radius: 20px;
+    padding: 5px 5px 5px 10px;
+    text-align: left;
+    font-size: 14px;
+    display: flex;
+}
+
+.search-submit {
+    margin-left: 90px;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background: url(https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/search.png) center no-repeat;
+}
+
+#miss-old {
+    background-color: rgba(123, 123, 123, 0.5);
+    margin: 0 0 0 10px;
+    border-radius: 5px;
+    border: #fff 1px solid;
+    padding: 5px 0;
+    text-align: left;
+    font-size: 14px;
+}
+
+.secondTop {
+    width: 37%;
+    height: 60px;
+}
+
+.second {
+    padding: 0 15px;
+    height: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#second-left,
+#second-right {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.SLTable {
+    margin-left: 8%;
+}
+
+.SRTable {
+    margin-right: 8%;
+}
+
+#news {
+    width: 100%;
+    height: 1050px;
+    background-color: #F8FCFE;
+    background-image: linear-gradient(#F8FCFE, #D1E8F6);
+}
+
+#newsTable {
+    width: 100%;
+    padding: 50px;
+
+}
+
+#newsTitle {
+    width: 100%;
+    height: 100px;
+}
+
+.news1 {
+    width: 40%;
+}
+
+.news1 img {
+    width: 13vw;
+    height: auto;
+}
+
+.news2 {
+    width: 28%;
+}
+
+#newsTitle2 a,
+#newsTitle3 a {
+    color: #A83231;
+    float: right;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+#newsTitle3 a {
+    margin-left: 20%;
+}
+
+#newsTitle3 {
+    width: 100%;
+    display: flex;
+    padding: 0 30px;
+    align-items: center;
+    /*所有子元素都垂直居中了*/
+}
+
+.news3 {
+    width: 32%;
+}
+
+.news3 img {
+    width: 13vw;
+    height: auto;
+}
+
+#newsContent {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+}
+
+#newsContent1 {
+    width: 45%;
+    height: 600px;
+    overflow: hidden;
+
+}
+
+#newsbox1 {
+    width: 100%;
+    height: 100%;
+    margin-right: 5%;
+    background-color: #fff;
+    padding-bottom: 30px;
+}
+
+#newsbox1 img {
+    width: 100%;
+    height: auto;
+}
+
+#newsbox1 h4 {
+    margin: 25px 40px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #A83231;
+}
+
+#newsbox1 h3 a {
+    margin: 0 40px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #000;
+}
+
+#newsContent2 {
+    width: 28%;
+    height: 600px;
+}
+
+#newsContent3 {
+    width: 32%;
+    height: 600px;
+}
+
+#newsbox2,
+#newsbox3 {
+    width: 100%;
+    height: 100%;
+    /* padding: 0 30px */
+}
+
+.newscard {
+    /* height: 100%; */
+    width: 100%;
+    flex-direction: column;
+    bottom: 0;
+}
+
+.event-title {
+    color: #000;
+
+}
+
+/* 中等屏幕（平板等） */
+@media (max-width: 992px) {
+    #header {
+        padding: 0 5px;
+    }
+
+    .second {
+        padding: 0 10px;
+        font-size: 1.1rem;
+    }
+
+    #newsbox1 h3 a {
+        font-size: 1.3rem;
+    }
+}
+
+/* 小屏幕（手机等） */
+@media (max-width: 768px) {
+
+    #top-left,
+    #top-right {
+        display: none;
+        /* 移动端隐藏复杂导航 */
+    }
+
+    #logo {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    #newsTable {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .news1,
+    .news2,
+    .news3 {
+        width: 100% !important;
+        margin-bottom: 2rem;
+    }
+
+    video {
+        min-height: 500px;
+    }
+}
+
+.con {
+    height: 100%;
+    position: relative;
+    margin: 0 0.24rem;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.32rem 0;
+    border-bottom: 1px solid #A9CADE;
+    z-index: 1;
+    bottom: 0;
+}
+
+.news2 .con {
+    flex-direction: column;
+}
+
+.news3 .con {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    color: #232323;
+    margin-top: 1.1rem;
+    font-size: 1.2rem;
+    line-height: 1.5em;
+    height: 3em;
+    max-height: 3em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    transition: color 0.4s ease-in-out;
+}
+
+.news3 .title {
+    /* flex: 1 1 auto; */
+    margin-top: 0;
+    margin-left: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.time {
+    display: flex;
+    font-size: 1.1rem;
+    color: #a42423;
+    line-height: 1.5em;
+    margin: 0.4rem 0;
+    transition: color 0.4s ease-in-out;
+}
+
+.news3 .time {
+    font-size: 1.75rem;
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    flex: 0 0 3.8rem;
+    background: #93ACCE;
+}
+
+.year {
+    font-size: 0.8rem;
+    line-height: 2em;
+}
+
+#newsbg img {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+#info {
+    width: 100%;
+    height: 1380px;
+    background-image: linear-gradient(#D1E8F6, rgba(128, 176, 239, 0.7));
+}
+
+#infoTable {
+    width: 100%;
+    height: 300px;
+}
+
+#infoTitle {
+    width: 100%;
+    height: 100px;
+}
+
+#infoTitle1 {
+    width: 100%;
+    height: 100px;
+}
+
+#infoTitle1 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+    top: -190px;
+}
+
+#infoContent {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    z-index: 2;
+    top: -275px;
+}
+
+.infos {
+    width: 100%;
+    height: 100%;
+}
+
+.infos img {
+    width: 93%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.infoContents {
+    text-align: center;
+}
+
+.infoContents a {
+    text-align: center;
+}
+
+#infoImg {
+    display: none;
+    position: relative;
+    z-index: -2;
+    top: -500px;
+}
+
+#info .container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: 640px;
+    /* 保持左右等高 */
+    padding: 30px;
+    /* gap: 20px; */
+    z-index: 1;
+    position: relative;
+}
+
+/* 左侧日历第一层 */
+.calendar {
+    width: 43%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 导航栏 */
+.calendar-header {
+    display: flex;
+    height: 140px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 12px 12px 0 0;
+}
+
+.calendar-header img {
+    height: 40px;
+}
+
+.calendar-header button {
+    border: none;
+    padding: 18px 24px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.calendar-header button a {
+    color: #E1C46E;
+    text-decoration: none;
+}
+
+/* 日历盒子第二层 */
+.calendar-box {
+    flex: 1;
+    height: 500px;
+    background: url("https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/calendar_bg.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 30px;
+    border-radius: 12px 0 0 12px;
+    box-shadow: 10px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* 日历本体第三层 */
+.calendar-body {
+    max-width: 400px;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.7);
+    /* 半透明白色 */
+    backdrop-filter: blur(20px);
+    /* 毛玻璃模糊效果 */
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#calMonth {
+    height: 60px;
+    text-align: left;
+}
+
+.calendar-body h3 {
+    text-align: left;
+    font-size: 1.6rem;
+    margin: 0 0 10px 0;
+    font-weight: normal;
+}
+
+.disabled {
+    color: #98abca;
+}
+
+.calendar-body table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.calendar-body th {
+    color: #666;
+    padding: 6px 0;
+}
+
+.calendar-body td {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.calendar-body td:hover {
+    background: #d3ebfa;
+}
+
+.calendar-body .active {
+    background: #3a84f5;
+    color: #fff;
+}
+
+.dot {
+    width: 4px;
+    height: 4px;
+    background: #3a84f5;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 右侧活动安排 */
+.events {
+    background: linear-gradient(180deg, #ffffff 10%, #d1e8f6 100%);
+    border-radius: 32px 0 32px 0;
+    padding: 54px 86px;
+    flex: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs {
+    display: flex;
+    font-size: 1.35rem;
+    font-weight: bold;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 15px;
+}
+
+.tabs div {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tabs .active {
+    color: #fff;
+    background: #E1C46E;
+    border-radius: 0 12px 0 12px;
+}
+
+.events table {
+    width: 100%;
+    border-collapse: collapse;
+    flex: 1;
+}
+
+.events td {
+    vertical-align: top;
+    /* padding: 20px; */
+}
+
+.event-title {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    margin-right: 50px;
+}
+
+.meta {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.8em;
+    margin-bottom: 10px;
+}
+
+.icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 4px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-time {
+    background-image: url("https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/time_yellow.png");
+}
+
+.icon-location {
+    background-image: url("https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/location_yellow.png");
+}
+
+.icon-speaker {
+    background-image: url("https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/zjr_yellow.svg");
+}
+
+.more {
+    text-align: right;
+    font-size: 12px;
+    flex: 1;
+}
+
+.more a {
+    color: #d14;
+    text-decoration: none;
+}
+
+#infoBg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -375px;
+}
+
+.container1 {
+    width: 100%;
+    height: 1200px;
+    background-image: url(https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/research_bg.png);
+    background-attachment: fixed;
+}
+
+.container1 .bg1 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(217, 236, 253, 0.90);
+}
+
+table.layout {
+    width: 96%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+td {
+    vertical-align: top;
+    padding: 0 10px;
+}
+
+/* 左侧简化布局（只保留与小卡片相关样式示例） */
+.left-box {
+    width: 70%;
+    border-right: #0057a4 solid 1px;
+    padding-right: 60px;
+}
+
+.header1 {
+    width: 30%;
+    display: flex;
+    margin-top: 200px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 99;
+}
+
+.header1 h2 {
+    font-size: 22px;
+    color: #0057a4;
+    margin: 0;
+}
+
+.more-link {
+    text-decoration: none;
+}
+
+.highlight-btn {
+    display: inline-block;
+    background: #f4b62c;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.top-cards {
+    position: relative;
+    height: 500px;
+    margin-bottom: 20px;
+}
+
+.card-text {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 380px;
+    height: 240px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+.card-text a {
+    color: #000;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+#title1{
+    position: relative;
+    top: 150px;
+}
+.card-image {
+    position: absolute;
+    top: -100px;
+    left: 35%;
+    width: 660px;
+    height: 440px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 底部三小卡片容器 */
+.bottom-cards {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+.bottom-card {
+    position: relative;
+    background: #fff;
+    padding: 36px;
+    flex: 1;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transition: background-color .35s ease, transform .25s ease;
+    overflow: hidden;
+}
+
+/* --- 关键：顶部黄条（默认可见） --- */
+.bottom-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    /* 默认显示整条黄色 */
+    background: #f4b62c;
+    /* 放在卡片顶部背景层，不会遮挡内容（内容在 padding 下方） */
+}
+
+/* 红条用于 hover 覆盖（通过 scaleX 做从左到右动画） */
+.bottom-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    /* 与 before 同宽，使用 transform 来控制显隐与动画 */
+    background: #d00;
+    /* 红色（悬停时覆盖） */
+    transform: scaleX(0);
+    /* 初始隐藏（scaleX 为0） */
+    transform-origin: left center;
+    transition: transform .45s cubic-bezier(.2, .9, .3, 1);
+    pointer-events: none;
+}
+
+.bottom-card h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 6px 0 20px 0;
+    transition: color .25s ease;
+}
+
+.bottom-card .date {
+    font-size: 1.0rem;
+    color: #B04140;
+    transition: color .25s ease;
+}
+
+/* hover：卡片变蓝、文字变白、红条从左到右展开覆盖 */
+.bottom-card:hover {
+    background: #0057a4;
+    transform: translateY(-6px);
+}
+
+.bottom-card:hover::after {
+    transform: scaleX(1);
+    /* 红条展开，覆盖黄条（产生从左到右的动画） */
+}
+
+.bottom-card:hover h4,
+.bottom-card:hover .date {
+    color: #fff;
+}
+
+/* 右侧项目申报 */
+.right-box {
+    vertical-align: top;
+    width: 30%;
+    padding: 0 3%;
+    position: relative;
+    z-index: 99;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 150px;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: #E1C46E;
+    border-radius: 0 12px 0 12px;
+    margin-right: 30px;
+}
+
+/* 修改.notice-list样式以适配table结构 */
+.notice-list {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 15px;
+    height: 100%;
+}
+
+.notice-item {}
+
+.notice-list tr {
+    border-bottom: 1px dashed #ccc;
+}
+
+.notice-list tr:last-child {
+    border-bottom: none;
+}
+
+.notice-date {
+    color: #B04140;
+    font-size: 1.1rem;
+    padding-right: 10px;
+    padding-top: 20px;
+}
+
+.notice-text {
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0 20px 0;
+    line-height: 1.5em;
+    height: 3em;
+}
+
+/* 图标类 */
+.icon-date,
+.icon-doc {
+    padding-left: 20px;
+    background: url("https://cdn-icons-png.flaticon.com/512/747/747310.png") no-repeat left center / 14px;
+}
+
+.highlight-btn {
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background: #E1C46E;
+    border-radius: 0 12px 0 12px;
+    margin-right: 30px;
+}
+
+.more-link {
+    font-size: 1.4rem;
+    color: #B04140;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.container2 {
+    width: 100%;
+    height: 900px;
+    position: relative;
+    margin-top: -4.3rem;
+    background-color: #fff;
+    background-blend-mode: overlay;
+}
+
+.container2 .bg2 {
+    top: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    background: url(https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/media_top_bg.png) center 136px no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+}
+
+#mediaDiv {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -100px;
+    overflow: hidden;
+    background: url(https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/media_bot_bg.png) no-repeat;
+    background-blend-mode: overlay;
+}
+
+.main-table {
+    width: 96%;
+    height: 614px;
+    position: relative;
+    top: 150px;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+.main-table td {
+    vertical-align: top;
+    /* padding: 10px; */
+}
+
+.media-table {
+    width: 100%;
+    height: 614px;
+    background: #fff;
+    padding: 1.3rem 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.media-row td {
+    padding: 1.85rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.media-row td a {
+    color: #000;
+    display: block;
+    margin-left: 20px;
+}
+
+.marginLeft {
+    margin-left: 10px;
+}
+
+.marginRight {
+    margin-right: 10px;
+}
+
+.media-row:last-child td {
+    border-bottom: none;
+}
+
+.media-logo {
+    width: 60px;
+    height: 40px;
+}
+
+.media-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 中间视频区 */
+.container2 .video-box {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container2 .video-box img {
+    width: 100%;
+    height: 360px;
+    display: block;
+}
+
+/* 底部两个新闻卡片 */
+
+#bottomCards {
+    width: 100%;
+
+    margin-top: 20px;
+}
+
+.container2 .bottomcard {
+    position: relative;
+    overflow: hidden;
+    height: 228px;
+    /* margin-right: 20px; */
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bottomCord {
+    padding: 0;
+    width: 40%;
+}
+
+.container2 .overlay {
+    height: 100%;
+    background: rgba(225, 196, 110, .69);
+    padding: 10px 15px;
+    color: #fff;
+}
+
+.container2 .overlay h4 {
+    /* font-size: 16px; */
+    width: 100%;
+}
+
+.container2 .overlay h4 img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.container2 .overlay p {
+
+    display: block;
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+    line-height: 1.5;
+}
+
+/* 右侧卡片 */
+.container2 .right-card {
+    width: 100%;
+    height: 614px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container2 .right-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@font-face {
+    font-family: "YouSheBiaoTiHei";
+    src: url("../css/YouSheBiaoTiHei.ttf");
+}
+
+.module-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.15rem;
+}
+
+.module-title {
+    font-size: 3.0rem;
+    color: #174990;
+    font-family: 'YouSheBiaoTiHei';
+    line-height: 0.6rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: end;
+}
+
+.title-text {
+    position: relative;
+}
+
+.more-link {
+    display: block;
+    color: #a42423;
+}
+
+.title-trans {
+    display: block;
+    position: relative;
+    font-size: 10px;
+    line-height: 2em;
+    color: #e1c46e;
+    padding-bottom: 2px;
+    margin-bottom: 0.8rem;
+}
+
+.container3 {
+    width: 100%;
+}
+
+.footer {
+    position: relative;
+    /* 开启定位环境 */
+    background-color: #184686;
+    background-image: url("https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/footer_bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+
+    color: #fff;
+    height: 378px;
+    /* 固定高度 */
+    padding: 0;
+    overflow: hidden;
+    /* 防止超出 */
+}
+
+.footer-table {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.footer-table td {
+    vertical-align: middle;
+    /* 三列内容垂直居中 */
+    padding: 10px;
+}
+
+/* 左侧logo */
+.footer-logo img {
+    height: 80px;
+}
+
+/* 联系我们 */
+.footer-contact h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.footer-contact table {
+    font-size: 14px;
+}
+
+.footer-contact td {
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+
+.footer-contact img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+/* 右侧按钮 */
+.footer-btn {
+    display: block;
+    width: 120px;
+    text-align: center;
+    padding: 10px 0;
+    margin-bottom: 12px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.footer-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 底部版权信息 */
+.footer-bottom {
+    position: absolute;
+    bottom: 10px;
+    /* 距离底部 10px */
+    padding: 30px 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.9;
+}
