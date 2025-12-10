@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易聊天室 - Web版</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #chat-box { height: 400px; border: 1px solid #ddd; overflow-y: scroll; padding: 10px; margin-bottom: 10px; background: #fff; border-radius: 4px; }
+        .message { margin: 5px 0; padding: 5px 10px; border-radius: 4px; word-wrap: break-word; }
+        .system-msg { color: #666; font-style: italic; font-size: 0.9em; text-align: center; }
+        .user-msg { color: #333; }
+        .my-msg { background-color: #e3f2fd; text-align: right; }
+        .controls { display: flex; gap: 10px; }
+        input[type="text"] { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        button:disabled { background-color: #ccc; }
+        #login-panel { text-align: center; margin-top: 50px; }
+        #chat-panel { display: none; }
+        .status { font-size: 0.8em; color: #888; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 登录面板 -->
+    <div id="login-panel">
+        <h2>加入聊天室</h2>
+        <input type="text" id="server-ip" placeholder="服务器IP (默认 124.222.4.182)" value="124.222.4.182">
+        <br><br>
+        <input type="text" id="nickname" placeholder="请输入昵称">
+        <br><br>
+        <button onclick="connect()">连接</button>
+    </div>
+
+    <!-- 聊天面板 -->
+    <div id="chat-panel">
+        <div class="status" id="status-bar">未连接</div>
+        <div id="chat-box"></div>
+        <div class="controls">
+            <input type="text" id="message-input" placeholder="输入消息..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let socket;
+    let myNickname = "";
+
+    function connect() {
+        const ip = document.getElementById('server-ip').value || '124.222.4.182';
+        const nickname = document.getElementById('nickname').value.trim();
+        
+        if (!nickname) {
+            alert("请输入昵称");
+            return;
+        }
+        myNickname = nickname;
+
+        // 连接到 WebSocket 网桥端口 (12346)
+        // 注意：这里连接的是 ws://，端口是网桥的端口
+        const wsUrl = `ws://${ip}:12346`;
+        
+        document.getElementById('status-bar').innerText = `正在连接到 ${wsUrl}...`;
+
+        try {
+            socket = new WebSocket(wsUrl);
+
+            socket.onopen = function(e) {
+                document.getElementById('status-bar').innerText = "已连接";
+                document.getElementById('login-panel').style.display = 'none';
+                document.getElementById('chat-panel').style.display = 'block';
+                
+                // 连接成功后，等待服务器询问昵称，或者直接发送昵称
+                // 我们的服务器逻辑是连接后会发送 "请输入您的昵称: "
+                // 但为了简化，我们在连接建立后稍微延迟一下发送昵称，或者等待收到数据
+            };
+
+            socket.onmessage = function(event) {
+                const msg = event.data;
+                
+                // 简单的逻辑：如果收到 "请输入您的昵称"，则自动发送昵称
+                if (msg.includes("请输入您的昵称")) {
+                    socket.send(myNickname);
+                    addMessage("系统", "已发送昵称: " + myNickname, 'system-msg');
+                } else {
+                    // 普通消息
+                    addMessage("收到", msg, 'user-msg');
+                }
+            };
+
+            socket.onclose = function(event) {
+                if (event.wasClean) {
+                    document.getElementById('status-bar').innerText = `连接关闭`;
+                } else {
+                    document.getElementById('status-bar').innerText = `连接断开 (代码: ${event.code})`;
+                }
+                addMessage("系统", "连接已断开", 'system-msg');
+                disableInput();
+            };
+
+            socket.onerror = function(error) {
+                console.error(error);
+                document.getElementById('status-bar').innerText = "连接错误";
+                alert("连接失败，请检查IP是否正确，以及服务器端的 'websocket_bridge.py' 是否已启动。");
+            };
+
+        } catch (e) {
+            alert("创建连接失败: " + e.message);
+        }
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('message-input');
+        const msg = input.value;
+        if (msg && socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(msg);
+            // 本地不直接显示，等待服务器广播回来（或者你可以选择本地先显示）
+            // addMessage(myNickname, msg, 'my-msg'); 
+            input.value = '';
+        }
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    function addMessage(sender, text, className) {
+        const chatBox = document.getElementById('chat-box');
+        const div = document.createElement('div');
+        div.className = `message ${className}`;
+        div.innerText = text;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function disableInput() {
+        document.getElementById('message-input').disabled = true;
+        document.querySelector('#chat-panel button').disabled = true;
+    }
+</script>
+
+</body>
+</html>
