@@ -1,0 +1,1 @@
+{"name":"Local: 18","url":"e:\\VS Code\\test\\18.c","tests":[{"id":1763862822893,"input":"4\nABCD\nEFGH\n5 4 3 2 1","output":""},{"id":1763862945878,"input":"5\nABGDE\nABEDC\n0 1 2 3 4 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\test\\18.c","group":"local","local":true}

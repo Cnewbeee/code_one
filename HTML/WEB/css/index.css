@@ -23,15 +23,35 @@ img {
     z-index: 999;
 }
 
-#header {    
-    background-image: linear-gradient(#0E366E, rgba(255, 255, 255, 0));    
-    width: 100%;    
-    padding: 0 10px;    
-    color: #fff;    
-    border: 0;    
-    width: 100%;    
-    position: fixed;    
+#header {
+    background-image: linear-gradient(#0E366E, rgba(255, 255, 255, 0));
+    width: 100%;
+    padding: 0 10px;
+    color: #fff;
+    border: 0;
+    width: 100%;
+    position: fixed;
     transition: background-image 0.3s ease; /* 添加过渡效果使变化更平滑 */
+}
+
+/* Header row layout */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.FLTable, .SLTable, .SRTable {
+    display: flex;
+    height: 100%;
 }
 
 /* 新增类：当滚动超过第一屏时应用 */
@@ -62,23 +82,31 @@ img {
 
 #top-left {
     height: 30px;
-    width: 35%;
+    display: flex;
+    align-items: center;
 }
 
 #first-left {
     height: 30px;
-    width: 80%;
-    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .first {
     padding: 0 10px;
     height: 20px;
     font-size: 0.9rem;
+    display: flex;
+    align-items: center;
 }
 
-#top {
-    max-width: 30px;
+.first a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .rightLine {
@@ -87,45 +115,63 @@ img {
 
 #logo {
     width: 26%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #top-right {
     display: flex;
     margin-right: 10%;
-    float: right;
+    align-items: center;
+    gap: 10px;
 }
 
 #search {
     width: 150px;
     background-color: rgba(123, 123, 123, 0.5);
     border-radius: 20px;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 10px;
     text-align: left;
     font-size: 14px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    cursor: pointer;
 }
 
 .search-submit {
-    margin-left: 90px;
     width: 20px;
     height: 20px;
     background-size: cover;
     background: url(https://www.nwnu.edu.cn/_upload/tpl/02/d9/729/template729/image/search.png) center no-repeat;
+    border: none;
+    cursor: pointer;
 }
 
 #miss-old {
     background-color: rgba(123, 123, 123, 0.5);
-    margin: 0 0 0 10px;
     border-radius: 5px;
     border: #fff 1px solid;
-    padding: 5px 0;
-    text-align: left;
+    padding: 5px 10px;
+    text-align: center;
     font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#miss-old a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
 }
 
 .secondTop {
     width: 37%;
     height: 60px;
+    display: flex;
+    align-items: center;
 }
 
 .second {
@@ -133,20 +179,34 @@ img {
     height: 40px;
     font-size: 1.2rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.second a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 #second-left,
 #second-right {
     width: 100%;
     margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .SLTable {
     margin-left: 8%;
+    height: 100%;
 }
 
 .SRTable {
     margin-right: 8%;
+    height: 100%;
 }
 
 #news {
@@ -159,7 +219,22 @@ img {
 #newsTable {
     width: 100%;
     padding: 50px;
+    box-sizing: border-box;
+}
 
+.news-row {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.news-content {
+    margin: 25px 40px;
+}
+
+#newsbox2, #newsbox3 {
+    display: flex;
+    flex-direction: column;
 }
 
 #newsTitle {
@@ -408,6 +483,16 @@ img {
 #infoTable {
     width: 100%;
     height: 300px;
+}
+
+.info-row {
+    display: flex;
+    width: 100%;
+}
+
+.infoContents {
+    flex: 1;
+    text-align: center;
 }
 
 #infoTitle {
@@ -702,10 +787,30 @@ img {
     background-color: rgba(217, 236, 253, 0.90);
 }
 
-table.layout {
+.layout {
     width: 96%;
     margin: 0 auto;
-    border-collapse: collapse;
+}
+
+.layout-row {
+    display: flex;
+    width: 100%;
+}
+
+.notice-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.notice-item {
+    display: flex;
+    border-bottom: 1px dashed #ccc;
+    padding: 10px 0;
+}
+
+.notice-item:last-child {
+    border-bottom: none;
 }
 
 td {
@@ -785,7 +890,7 @@ td {
     position: absolute;
     top: -100px;
     left: 35%;
-    width: 660px;
+    width: 65%;
     height: 440px;
     background: #fff;
     border-radius: 12px;
@@ -1003,7 +1108,61 @@ td {
     position: relative;
     top: 150px;
     margin: 30px auto;
-    border-collapse: collapse;
+}
+
+.main-row {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.media-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.media-table {
+    width: 100%;
+    height: 614px;
+    background: #fff;
+    padding: 1.3rem 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.media-row {
+    display: flex;
+    align-items: center;
+    padding: 1.85rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.media-row:last-child {
+    border-bottom: none;
+}
+
+.media-logo {
+    width: 60px;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.media-link {
+    flex: 1;
+    color: #000;
+}
+.media-link a {
+    color: #000;
+    display: block;
+}
+.bottom-cards-row {
+    display: flex;
+    width: 100%;
+}
+
+.video-section, .bottom-cards-section {
+    margin-bottom: 20px;
 }
 
 .main-table td {
@@ -1017,6 +1176,7 @@ td {
     background: #fff;
     padding: 1.3rem 2rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 .media-row td {
@@ -1072,8 +1232,6 @@ td {
 
 #bottomCards {
     width: 100%;
-
-    margin-top: 20px;
 }
 
 .container2 .bottomcard {
@@ -1088,7 +1246,7 @@ td {
 
 .bottomCord {
     padding: 0;
-    width: 40%;
+    flex: 1;
 }
 
 .container2 .overlay {
@@ -1201,7 +1359,35 @@ td {
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    border-collapse: collapse;
+}
+
+.footer-row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+}
+
+.contact-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
 }
 
 .footer-table td {

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>网页计算器 - 实验</title>
+  <style>
+    *{box-sizing:border-box;font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif}
+    :root{--bg1:#f5f9ff;--card:#0b1320;--accent:#e1c46e;--muted:rgba(255,255,255,0.65)}
+    html,body{height:100%;}
+    body{display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(180deg,#e9f2ff 0%, #f8fbff 60%);margin:0;padding:20px}
+    .calculator{width:380px;background:linear-gradient(180deg,#071026 0%, #0b1320 100%);color:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 50px rgba(6,23,48,0.35);border:1px solid rgba(255,255,255,0.03)}
+    .display{background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));padding:18px;border-radius:12px;text-align:right;min-height:86px;display:flex;flex-direction:column;justify-content:center;backdrop-filter: blur(6px);}
+    .display .expression{font-size:13px;color:rgba(255,255,255,0.6);min-height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .display .result{font-size:36px;font-weight:700;letter-spacing:0.5px;color:#fff;margin-top:6px}
+    .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+    .button{padding:14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:#fff;font-size:18px;cursor:pointer;transition:all .18s cubic-bezier(.2,.9,.3,1);box-shadow:0 6px 18px rgba(6,23,48,0.4);backdrop-filter: blur(2px)}
+    .button:hover{transform:translateY(-4px);box-shadow:0 18px 30px rgba(6,23,48,0.45)}
+    .button:active{transform:translateY(-1px);opacity:0.95}
+    .button.op{background:linear-gradient(180deg,#ffd08a,#ff9b3b);color:#1b1b1b;border:none;box-shadow:0 8px 20px rgba(255,155,59,0.18)}
+    .button.func{background:rgba(255,255,255,0.02);font-size:15px}
+    .button.wide{grid-column:span 2}
+    .footer-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+    .history{max-height:120px;overflow:auto;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02));padding:8px;border-radius:10px;margin-top:12px;font-size:13px;border:1px solid rgba(255,255,255,0.02)}
+    .history div{padding:6px 8px;border-radius:6px;color:rgba(255,255,255,0.85)}
+    .history div:nth-child(odd){background:rgba(255,255,255,0.01)}
+    .memline{display:flex;gap:8px;align-items:center;margin-top:12px;color:var(--muted)}
+    #memVal{background:rgba(255,255,255,0.03);padding:4px 8px;border-radius:6px}
+    @media(max-width:420px){.calculator{width:92vw;padding:12px}.display .result{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="calculator" role="application" aria-label="计算器">
+    <div class="display">
+      <div class="expression" aria-live="polite"></div>
+      <div class="result" aria-live="polite"></div>
+    </div>
+    <div class="keys">
+      <button class="button func" data-value="MC">MC</button>
+      <button class="button func" data-value="MR">MR</button>
+      <button class="button func" data-value="M+">M+</button>
+      <button class="button func" data-value="M-">M-</button>
+
+      <button class="button func" data-value="(">(</button>
+      <button class="button func" data-value=")">)</button>
+      <button class="button func" data-value="sqrt">√</button>
+      <button class="button op" data-value="÷">÷</button>
+
+      <button class="button" data-value="7">7</button>
+      <button class="button" data-value="8">8</button>
+      <button class="button" data-value="9">9</button>
+      <button class="button op" data-value="×">×</button>
+
+      <button class="button" data-value="4">4</button>
+      <button class="button" data-value="5">5</button>
+      <button class="button" data-value="6">6</button>
+      <button class="button op" data-value="-">-</button>
+
+      <button class="button" data-value="1">1</button>
+      <button class="button" data-value="2">2</button>
+      <button class="button" data-value="3">3</button>
+      <button class="button op" data-value="+">+</button>
+
+      <button class="button func" data-value="C">C</button>
+      <button class="button" data-value="0">0</button>
+      <button class="button" data-value=".">.</button>
+      <button class="button op" data-value="=">=</button>
+    </div>
+
+    <div class="memline">
+      <span style="color:rgba(255,255,255,0.6)">Memory:</span><span id="memVal" style="min-width:60px">0</span>
+    </div>
+    <div class="history" id="history" aria-live="polite"></div>
+    <div class="footer-note">记忆(M+/M-/MR/MC)、括号、开方 √、历史记录、键盘输入</div>
+  </div>
+
+  <script>
+    // 扩展功能计算器
+    const exprEl = document.querySelector('.expression');
+    const resultEl = document.querySelector('.result');
+    const historyEl = document.getElementById('history');
+    const memValEl = document.getElementById('memVal');
+
+    let expression = '';
+    let memory = 0;
+    let resultShown = false;
+
+    function updateDisplay(){ exprEl.textContent = expression; }
+
+    function pushHistory(eq, res){
+      const div = document.createElement('div');
+      div.textContent = eq + ' = ' + res;
+      historyEl.prepend(div);
+      if(historyEl.children.length > 20) historyEl.removeChild(historyEl.lastChild);
+    }
+
+    function safeEval(expr){
+      // 替换乘除和百分号及开方、幂
+      let s = expr.replace(/×/g,'*').replace(/÷/g,'/').replace(/√/g,'sqrt').replace(/\^/g,'**');
+      // 处理百分号：50% => (50/100)
+      s = s.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');
+      // 支持 sqrt(x)
+      s = s.replace(/sqrt\(([^)]+)\)/g,'Math.sqrt($1)');
+      // 防止注入：仅允许数字、运算符、小数点、括号、Math和**
+      if(/[^0-9+\-*/().%\s*Matha-zA-Z_\d\,\*\*]/.test(s)) throw new Error('Invalid');
+      // 使用 Function 执行
+      return Function('return ' + s)();
+    }
+
+    function inputChar(ch){
+      if(resultShown && /[0-9.\(]/.test(ch)){
+        expression = ch;
+        resultShown = false;
+      } else {
+        expression += ch;
+      }
+      updateDisplay();
+    }
+
+    function clearAll(){ expression = ''; resultEl.textContent = ''; updateDisplay(); }
+    function backspace(){ expression = expression.slice(0,-1); updateDisplay(); }
+
+    function compute(){
+      if(!expression) return;
+      try{
+        const val = safeEval(expression);
+        resultEl.textContent = val;
+        pushHistory(expression, val);
+        resultShown = true;
+      }catch(e){ resultEl.textContent = 'Error'; }
+    }
+
+    // 记忆功能
+    function memClear(){ memory = 0; memValEl.textContent = memory; }
+    function memRecall(){ expression += String(memory); updateDisplay(); }
+    function memAdd(){ try{ const v = safeEval(expression||'0'); memory += Number(v); memValEl.textContent = memory; }catch(e){} }
+    function memSub(){ try{ const v = safeEval(expression||'0'); memory -= Number(v); memValEl.textContent = memory; }catch(e){} }
+
+    document.addEventListener('click', e=>{
+      const btn = e.target.closest('.button'); if(!btn) return;
+      const v = btn.dataset.value;
+      switch(v){
+        case 'C': clearAll(); break;
+        case 'MC': memClear(); break;
+        case 'MR': memRecall(); break;
+        case 'M+': memAdd(); break;
+        case 'M-': memSub(); break;
+        case '=': compute(); break;
+        case 'sqrt': inputChar('sqrt('); break;
+        default: inputChar(v);
+      }
+    });
+
+    // 键盘支持
+    window.addEventListener('keydown', e=>{
+      const k = e.key;
+      if(/[0-9]/.test(k)) inputChar(k);
+      else if(k === '.') inputChar('.');
+      else if(k === 'Enter') { e.preventDefault(); compute(); }
+      else if(k === 'Backspace') backspace();
+      else if(k === 'Escape') clearAll();
+      else if(k === '+') inputChar('+');
+      else if(k === '-') inputChar('-');
+      else if(k === '*') inputChar('×');
+      else if(k === '/') inputChar('÷');
+      else if(k === '%') inputChar('%');
+      else if(k === '(' || k === ')') inputChar(k);
+      else if(k === '^') inputChar('^');
+    });
+
+    // 初始化
+    updateDisplay(); memValEl.textContent = memory; resultEl.textContent = '';
+  </script>
+</body>
+</html>

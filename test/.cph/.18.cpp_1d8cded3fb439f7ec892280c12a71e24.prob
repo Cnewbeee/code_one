@@ -1,0 +1,1 @@
+{"name":"Local: 18","url":"e:\\VS Code\\test\\18.cpp","tests":[{"id":1763869331009,"input":"12\n1 2 4 1 3 4 190 160 181 161 173 151","output":"4"},{"id":1763869347776,"input":"10\n1 151 2 4 1 3 4 6 1 151","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\VS Code\\test\\18.cpp","group":"local","local":true}
