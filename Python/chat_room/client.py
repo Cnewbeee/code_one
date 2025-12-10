@@ -3,10 +3,10 @@ import threading
 import sys
 
 # 配置项
-DEFAULT_HOST = '127.0.0.1'  # 默认服务器IP地址
-PORT = 12345                # 服务器端口
-BUFFER_SIZE = 1024          # 缓冲区大小
-ENCODING = 'utf-8'          # 编码格式
+DEFAULT_HOST = '124.222.4.182'  # 默认服务器IP地址 (公网服务器)
+PORT = 12345                    # 服务器端口
+BUFFER_SIZE = 1024              # 缓冲区大小
+ENCODING = 'utf-8'              # 编码格式
 
 def receive_messages(client_socket):
     """

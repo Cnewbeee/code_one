@@ -24,6 +24,17 @@ def get_host_ip():
         s.close()
     return ip
 
+def get_public_ip():
+    """
+    尝试获取公网IP (用于云服务器显示)
+    """
+    try:
+        from urllib.request import urlopen
+        # 设置超时时间为3秒，避免阻塞太久
+        return urlopen('https://api.ipify.org', timeout=3).read().decode('utf-8')
+    except:
+        return None
+
 def broadcast(message, sender_socket=None):
     """
     将消息广播给所有其他客户端
@@ -99,8 +110,15 @@ def start_server():
         server.listen()
         
         host_ip = get_host_ip()
+        public_ip = get_public_ip()
+        
         print(f"[启动] 服务器正在运行")
         print(f"[信息] 本机局域网IP: {host_ip}")
+        if public_ip:
+            print(f"[信息] 本机公网IP:   {public_ip} (云服务器请用此IP连接)")
+        else:
+            print(f"[提示] 未检测到公网IP，如果是云服务器，请使用控制台显示的公网IP")
+            
         print(f"[信息] 监听端口: {PORT}")
         print("[等待] 等待客户端连接...")
         

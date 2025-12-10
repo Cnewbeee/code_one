@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.nio.charset.StandardCharsets;
 
 public class ChatClient {
-    private static final String DEFAULT_HOST = "127.0.0.1";
+    private static final String DEFAULT_HOST = "124.222.4.182";
     private static final int PORT = 12345;
 
     public static void main(String[] args) {
