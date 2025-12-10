@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用导航中心</title>
+    <style>
+        :root {
+            --primary-color: #00f260;
+            --secondary-color: #0575e6;
+            --bg-color: #0f0c29;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 40px;
+            text-align: center;
+            max-width: 900px;
+            width: 90%;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+            font-size: 3.5em;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00f260, #0575e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(5, 117, 230, 0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .nav-card {
+            background: var(--card-bg);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .nav-card:hover::before {
+            left: 100%;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 
+                        0 0 20px rgba(5, 117, 230, 0.4);
+        }
+
+        .icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+
+        .nav-card:hover .icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .desc {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+        }
+
+        /* 特定卡片样式 */
+        .chat-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 25px rgba(0, 242, 96, 0.5); border-color: rgba(0, 242, 96, 0.5); }
+        .movie-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 25px rgba(255, 71, 87, 0.5); border-color: rgba(255, 71, 87, 0.5); }
+        .blog-card:hover { box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 25px rgba(46, 213, 115, 0.5); border-color: rgba(46, 213, 115, 0.5); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="container">
+    <h1>PORTAL HUB</h1>
+    <div class="nav-grid">
+        <!-- 聊天室 -->
+        <a href="web_client.html" class="nav-card chat-card">
+            <div class="icon">💬</div>
+            <div class="title">CHAT ROOM</div>
+            <div class="desc">实时加密通讯终端</div>
+        </a>
+
+        <!-- 影视功能 -->
+        <a href="http://124.222.4.182:8899" class="nav-card movie-card">
+            <div class="icon">🎬</div>
+            <div class="title">MEDIA CENTER</div>
+            <div class="desc">高清流媒体服务</div>
+        </a>
+
+        <!-- 博客功能 -->
+        <a href="http://124.222.4.182:8090" class="nav-card blog-card">
+            <div class="icon">📝</div>
+            <div class="title">TECH BLOG</div>
+            <div class="desc">知识库与技术文档</div>
+        </a>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    
+    // 粒子配置
+    const PARTICLE_COUNT_PLANET = 2000;   // 增加星球粒子数量
+    const PARTICLE_COUNT_RING = 5000;     // 增加星环粒子数量
+    const PLANET_RADIUS = 220;        // 放大星球
+    const RING_INNER_RADIUS = 320;    // 放大内环
+    const RING_OUTER_RADIUS = 650;    // 放大外环
+    
+    let particles = [];
+    let angle = 0;
+
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+        constructor(type) {
+            this.type = type; // 'planet' or 'ring'
+            this.reset();
+        }
+
+        reset() {
+            if (this.type === 'planet') {
+                // 球体分布
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                this.x = PLANET_RADIUS * Math.sin(phi) * Math.cos(theta);
+                this.y = PLANET_RADIUS * Math.sin(phi) * Math.sin(theta);
+                this.z = PLANET_RADIUS * Math.cos(phi);
+                this.baseColor = `rgba(200, 200, 255, ${Math.random() * 0.5 + 0.1})`;
+                this.size = Math.random() * 1.5 + 0.5;
+            } else {
+                // 环状分布
+                const theta = Math.random() * Math.PI * 2;
+                // 让环的粒子分布更自然（外圈稀疏，内圈密集，或者均匀）
+                const r = Math.sqrt(Math.random() * (RING_OUTER_RADIUS**2 - RING_INNER_RADIUS**2) + RING_INNER_RADIUS**2);
+                this.x = r * Math.cos(theta);
+                this.z = r * Math.sin(theta);
+                this.y = (Math.random() - 0.5) * 5; // 环有一点点厚度
+                this.baseColor = `rgba(255, 255, 255, ${Math.random() * 0.4 + 0.1})`;
+                this.size = Math.random() * 1.2 + 0.3;
+            }
+        }
+
+        project(angleX, angleY, angleZ) {
+            // 1. 绕 Y 轴自转 (模拟星球旋转)
+            let x1 = this.x * Math.cos(angleY) - this.z * Math.sin(angleY);
+            let z1 = this.x * Math.sin(angleY) + this.z * Math.cos(angleY);
+            let y1 = this.y;
+
+            // 2. 视角调整：复合旋转
+            
+            // 绕 X 轴旋转 (俯视角度 Pitch) - 让我们能看到星环的面
+            // 增加角度到 35 度，视角更斜
+            let pitchAngle = 35 * Math.PI / 180; 
+            let y2 = y1 * Math.cos(pitchAngle) - z1 * Math.sin(pitchAngle);
+            let z2 = y1 * Math.sin(pitchAngle) + z1 * Math.cos(pitchAngle);
+            let x2 = x1;
+
+            // 绕 Z 轴旋转 (倾斜角度 Roll) - 保持一点倾斜感
+            let tiltAngle = 15 * Math.PI / 180; 
+            let x3 = x2 * Math.cos(tiltAngle) - y2 * Math.sin(tiltAngle);
+            let y3 = x2 * Math.sin(tiltAngle) + y2 * Math.cos(tiltAngle);
+            let z3 = z2;
+
+            // 3. 透视投影
+            const perspective = 1000;
+            // 减少 Z 轴偏移量 (+100)，让物体看起来更近（更大）
+            const scale = perspective / (perspective + z3 + 100); 
+
+            return {
+                x: width / 2 + x3 * scale,
+                y: height / 2 + y3 * scale,
+                scale: scale,
+                z: z3 // 用于深度排序
+            };
+        }
+    }
+
+    function init() {
+        particles = [];
+        for (let i = 0; i < PARTICLE_COUNT_PLANET; i++) {
+            particles.push(new Particle('planet'));
+        }
+        for (let i = 0; i < PARTICLE_COUNT_RING; i++) {
+            particles.push(new Particle('ring'));
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // 增加旋转角度
+        angle += 0.003;
+
+        // 计算所有粒子的投影位置
+        const projectedParticles = particles.map(p => {
+            // 环的粒子转得慢一点，或者跟星球一样
+            // 这里让它们一起转
+            return {
+                p: p,
+                proj: p.project(0, angle, 0)
+            };
+        });
+
+        // 按 Z 轴深度排序，确保遮挡关系正确 (远的先画)
+        projectedParticles.sort((a, b) => b.proj.z - a.proj.z);
+
+        projectedParticles.forEach(item => {
+            const { x, y, scale, z } = item.proj;
+            const p = item.p;
+
+            // 根据深度调整透明度，营造景深感
+            const alphaScale = (z + 500) / 1000; 
+            // 简单的淡入淡出
+            
+            ctx.beginPath();
+            ctx.arc(x, y, p.size * scale, 0, Math.PI * 2);
+            
+            // 颜色处理
+            if (p.type === 'planet') {
+                ctx.fillStyle = p.baseColor;
+            } else {
+                // 环的颜色带一点彩虹或者纯白
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, 0.6 * scale - 0.2)})`;
+            }
+            
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+        resize();
+        // 不需要重新 init，只需要改变投影中心
+    });
+
+    resize();
+    init();
+    animate();
+</script>
+
+</body>
+</html>
